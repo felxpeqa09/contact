@@ -11,7 +11,7 @@ void main(List<String>arguments){
       stdout.writeln("4. Buscar contacto por ciudad");
       stdout.writeln("5. Actualizar telefono");
       stdout.writeln("6. Eiminar contacto)");
-      stdout.writeln("7. COntactos existentes");
+      stdout.writeln("7. Numero de contactos existentes");
       stdout.writeln("9. Mostrar contactos alfabeticamente");
       stdout.writeln("9. Salir");
       stdout.writeln("Ingrese una opcion: ");
@@ -26,6 +26,11 @@ void main(List<String>arguments){
         case 3:
           buscarContactoPorNombre(contactos);
           break;
+        case 4:
+          buscarContactoPorCiudad(contactos);
+          break;
+        case 5:
+
 
 
       }

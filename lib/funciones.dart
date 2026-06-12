@@ -29,6 +29,7 @@ void registrarContacto(List<Map<String,dynamic>> contactos){
     }
   }
 }
+
 void mostarContactos(List<Map<String,dynamic>>contactos){
   stdout.writeln("-----------MOSTRAR CONTACTOS-----------");
   if(contactos.isEmpty){
@@ -42,14 +43,16 @@ void mostarContactos(List<Map<String,dynamic>>contactos){
     stdout.writeln("Ciudad: ${contactos["ciudad"]}");  
   }
 }
+
 void buscarContactoPorNombre(List<Map<String,dynamic>> contactos){
-  stdout.write("-----------BUSCAR CONTACTO POR NOMBRE-----------");
+  stdout.writeln("-----------BUSCAR CONTACTO POR NOMBRE-----------");
   stdout.writeln("Ingrese nombre del contacto a buscar. ");
   String nombreBuscado = stdin.readLineSync()?? "";
 if(nombreBuscado.isEmpty){
   stdout.writeln("El nombre no puede estar vacío. Por favor, ingrese un nombre válido.");
   return;
 }
+bool encontrado = false;
 for(var contacto in contactos){
   if(contacto["nombre"].toString().toLowerCase()==nombreBuscado.toLowerCase()){
     stdout.writeln("Id: ${contacto["id"]}");
@@ -57,11 +60,38 @@ for(var contacto in contactos){
     stdout.writeln("Telefono: ${contacto["telefono"]}");  
     stdout.writeln("Correo: ${contacto["correo"]}");
     stdout.writeln("Ciudad: ${contacto["ciudad"]}");
-  }
-  else {
-    stdout.writeln("No se encontró ningún contacto con el nombre '$nombreBuscado'.");
+    encontrado = true ;
   }
 }
+if (!encontrado){
+  stdout.writeln("No se encontró ningún contacto con el nombre '$nombreBuscado'.");
+}
 
+}
+void buscarContactoPorCiudad(List<Map<String,dynamic>> contactos){
+  stdout.writeln("-----------BUSCAR CONTACTO POR CIUDAD-----------");
+  stdout.writeln("Ingrese nombre de la ciudad:  ");
+  String ciudadBuscada = stdin.readLineSync()?? "";
+  if(ciudadBuscada.isEmpty){
+    stdout.writeln("la ciudad buscada no puede esta vacia . por favor ingrese una ciudad ");
+    return;
+  }
+  bool encontrado = false;
+  for (var contacto in contactos){
+    if(contacto["ciudad"].toString().toLowerCase()==ciudadBuscada.toLowerCase()){
+    stdout.writeln("------------------");
+    stdout.writeln("Id: ${contacto["id"]}");
+    stdout.writeln("Nombre: ${contacto["nombre"]}");
+    stdout.writeln("Telefono: ${contacto["telefono"]}");  
+    stdout.writeln("Correo: ${contacto["correo"]}");
+    stdout.writeln("Ciudad: ${contacto["ciudad"]}");
+    stdout.writeln("------------------");
+    
+    encontrado = true ;
+    }
+    if(!encontrado){
+      stdout.writeln("No se encontro ningun contacto registrado con esta ciudad");
+    }
 
+  }
 }
