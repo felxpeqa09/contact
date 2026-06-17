@@ -10,9 +10,9 @@ void main(List<String>arguments){
       stdout.writeln("3. Buscar contacto por nombre");
       stdout.writeln("4. Buscar contacto por ciudad");
       stdout.writeln("5. Actualizar telefono");
-      stdout.writeln("6. Eiminar contacto)");
+      stdout.writeln("6. Eiminar contacto");
       stdout.writeln("7. Numero de contactos existentes");
-      stdout.writeln("9. Mostrar contactos alfabeticamente");
+      stdout.writeln("8. Mostrar contactos alfabeticamente");
       stdout.writeln("9. Salir");
       stdout.writeln("Ingrese una opcion: ");
       opcion = int.tryParse(stdin.readLineSync()??"")?? 0;
@@ -30,9 +30,20 @@ void main(List<String>arguments){
           buscarContactoPorCiudad(contactos);
           break;
         case 5:
-
-
-
+          actualizarTelefono(contactos);
+          break;
+        case 6:
+          eliminarContacto(contactos);
+          break;
+        case 7:
+          numeroContactosExistentes(contactos);
+        case 8:
+          mostrarAlfabeticamente(contactos);
+          break;
+        default:
+          stdout.writeln("Opcion no encontrada");
+          break;
       }
     } while (opcion!=9);
+    stdout.writeln("Salida exitosa");
 }

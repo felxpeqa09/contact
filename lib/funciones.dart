@@ -95,3 +95,67 @@ void buscarContactoPorCiudad(List<Map<String,dynamic>> contactos){
 
   }
 }
+
+void actualizarTelefono (List<Map<String,dynamic>> contactos){
+  stdout.writeln("---------ACTUALIZAR TELEFONO---------");
+  int idBuscado  ;
+  try {
+    stdout.writeln("Ingrese id del telefono a actualizar");
+    idBuscado = int.parse(stdin.readLineSync()!);
+  }on FormatException {
+    print("Entrada invalida. debe ingresar un dato tipo entero");
+    return ;
+  }
+  for(var contacto in contactos){
+    int numeroTelefonoNuevo ;
+    if(contacto["id"] == idBuscado){
+      stdout.writeln("Id ${contacto["id"]}");
+      stdout.writeln("Nombre ${contacto["nombre"]}");
+      stdout.writeln("Telefono ${contacto["telefono"]}");
+      stdout.writeln("Correo ${contacto["correo"]}");
+      stdout.writeln("Ciudad ${contacto["ciudad"]}");
+      stdout.writeln("-------INGRESE EL NUMERO NUEVO------");
+      try{
+        numeroTelefonoNuevo = int.parse(stdin.readLineSync()!);
+        contacto["telefono"] = numeroTelefonoNuevo;
+      }on FormatException{
+        stdout.writeln("Entrada invalida. debe ingresar un dato tipo entero");
+        return;
+      }
+    }else {
+      stdout.writeln("No existe contacto registrado con ese id");
+    }
+  }
+
+}
+void eliminarContacto(List<Map<String,dynamic>> contactos){
+  int idBuscado;
+  stdout.writeln("-------ELIMINAR CONTACTO-------");
+  try{
+    stdout.writeln("Ingrese id de contacto a eliminar");
+    idBuscado = int.parse(stdin.readLineSync()!);
+  }on FormatException{
+    stdout.writeln("Entrada invalidada. debe ingresar un dato tipo entero");
+    return;
+  }
+  contactos.removeWhere((contacto)=> contacto["id"]== idBuscado
+  );
+
+}
+void numeroContactosExistentes (List<Map<String,dynamic>> contactos){
+  stdout.writeln("-----------NUMEROS CONTACTOS EXISTENTES--------");
+  stdout.writeln("Hay ${contactos.length} numeros registrados ");
+
+}
+void mostrarAlfabeticamente(List<Map<String,dynamic>> contactos){
+  contactos.sort(
+    (a,b) =>(a["nombre"].toString().compareTo(b["nombre"].toString()))
+  );
+  for(var contacto in contactos ){
+    stdout.writeln("Id ${contacto["id"]}");
+    stdout.writeln("Nombre ${contacto["nombre"]}");
+    stdout.writeln("Telefono ${contacto["telefono"]}");
+    stdout.writeln("Correo ${contacto["correo"]}");
+    stdout.writeln("Ciudad ${contacto["ciudad"]}");
+  }
+}
